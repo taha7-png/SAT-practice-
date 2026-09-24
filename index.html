@@ -1,0 +1,1934 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAT Infinity · Bluebook-Style Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root{
+  --bg1:#f5f2ff; --bg2:#ece7fb; --app-bg:rgba(255,255,255,.82);
+  --app-border:rgba(255,255,255,.7); --shadow:0 25px 60px -15px rgba(79,45,140,.28);
+  --text:#1a1630; --muted:#6b5b8e; --heading:#2a1a5c;
+  --card:#ffffff; --card-border:#ebe3ff;
+  --opt:#faf9ff; --opt-border:#e3daff; --opt-hover:#f1ecff;
+  --opt-sel:#ece4ff; --opt-sel-b:#7b5aff;
+  --passage:#f6f3ff; --passage-b:#8a6eff;
+  --fb:#f4f1fd; --prog:#e4daff;
+  --nav:#ffffff; --nav-b:#e3d9ff;
+  --pill:#ffffff; --pill-b:#eae1ff;
+  --hero:linear-gradient(135deg,#f0eaff 0%,#faf8ff 60%,#f6efff 100%);
+  --toggle:#e9e2ff; --knob:#6b4eff;
+  --green:#20b87a; --orange:#ff9f43; --red:#e34f6f; --blue:#4f8eff; --purple:#8a6eff;
+  --accent:#6b4eff; --accent2:#b44aff;
+  --font-size:15px;
+}
+[data-theme="dark"]{
+  --bg1:#0c0818; --bg2:#150f24; --app-bg:rgba(24,18,40,.9);
+  --app-border:rgba(120,90,200,.25); --shadow:0 25px 60px -15px rgba(0,0,0,.7);
+  --text:#ece6ff; --muted:#a595c8; --heading:#d8c8ff;
+  --card:#1c1533; --card-border:#2c2350;
+  --opt:#221a3d; --opt-border:#342a58; --opt-hover:#2c2350;
+  --opt-sel:#332a58; --opt-sel-b:#8a6eff;
+  --passage:#191230; --passage-b:#8a6eff;
+  --fb:#1c1533; --prog:#2c2350;
+  --nav:#1c1533; --nav-b:#2c2350;
+  --pill:#1c1533; --pill-b:#2c2350;
+  --hero:linear-gradient(135deg,#1a1235 0%,#221a3d 60%,#1e1638 100%);
+  --toggle:#2c2350; --knob:#b44aff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg1); background-image:
+    radial-gradient(circle at 15% 10%,rgba(138,110,255,.14),transparent 45%),
+    radial-gradient(circle at 85% 85%,rgba(180,74,255,.12),transparent 45%),
+    linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 100%);
+  background-attachment:fixed;
+  min-height:100vh; padding:1.2rem; color:var(--text);
+  font-size:var(--font-size);
+  transition:background .4s,color .3s;
+  line-height:1.5;
+}
+.app{
+  max-width:1280px; margin:0 auto;
+  background:var(--app-bg); backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-radius:2.2rem; box-shadow:var(--shadow),0 0 0 1px var(--app-border);
+  padding:1.5rem 1.6rem 1.8rem; position:relative; overflow:hidden;
+}
+.app::before{
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(circle at 90% 10%,rgba(180,74,255,.06),transparent 40%);
+  pointer-events:none;
+}
+
+/* HEADER */
+.header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.4rem;position:relative;z-index:2}
+.logo{display:flex;align-items:center;gap:.75rem}
+.logo-mark{
+  width:46px;height:46px;border-radius:15px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:1.5rem;box-shadow:0 10px 20px -8px rgba(107,78,255,.7);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.logo h1{
+  font-size:1.5rem;font-weight:900;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.logo .sub{font-size:.75rem;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:.35rem}
+.header-right{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.icon-btn{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--pill-b);
+  background:var(--pill);color:var(--accent);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.icon-btn:hover{background:var(--opt-hover);transform:translateY(-2px);box-shadow:0 6px 14px -6px rgba(107,78,255,.4)}
+.icon-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* NAV */
+.nav{
+  display:flex;gap:.35rem;flex-wrap:wrap;background:var(--nav);
+  padding:.35rem;border-radius:100px;border:1px solid var(--nav-b);
+  margin-bottom:1.4rem;position:relative;z-index:2;
+}
+.nav-btn{
+  border:none;background:transparent;padding:.6rem 1rem;border-radius:100px;
+  font-weight:700;font-size:.78rem;color:var(--accent);cursor:pointer;
+  display:flex;align-items:center;gap:.4rem;transition:all .2s;font-family:inherit;
+  white-space:nowrap;
+}
+.nav-btn:hover{background:var(--opt-hover)}
+.nav-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 18px -8px rgba(107,78,255,.8)}
+
+/* PAGES */
+.page{display:none;animation:fadeIn .4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* HOME */
+.hero{
+  background:var(--hero);border-radius:2rem;padding:2.4rem 2rem;
+  margin-bottom:1.6rem;border:1px solid var(--card-border);position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'✦';position:absolute;font-size:14rem;color:rgba(138,110,255,.08);
+  right:-30px;bottom:-80px;font-weight:900;
+}
+.hero::after{
+  content:'∞';position:absolute;font-size:8rem;color:rgba(180,74,255,.06);
+  right:60px;top:-40px;font-weight:900;
+}
+.hero h2{
+  font-size:2.1rem;font-weight:900;color:var(--heading);
+  margin-bottom:.5rem;letter-spacing:-.03em;position:relative;z-index:1;
+}
+.hero p{color:var(--muted);max-width:640px;line-height:1.65;position:relative;z-index:1;font-size:.95rem}
+.hero .pill-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;position:relative;z-index:1}
+.hero .hero-pill{
+  background:rgba(255,255,255,.7);border:1px solid var(--card-border);
+  padding:.35rem .9rem;border-radius:100px;font-size:.72rem;font-weight:700;color:var(--accent);
+  display:flex;align-items:center;gap:.35rem;
+}
+[data-theme="dark"] .hero .hero-pill{background:rgba(40,30,70,.6)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-bottom:1.6rem}
+.card-link{
+  background:var(--card);border-radius:1.6rem;padding:1.5rem 1.3rem;
+  border:1px solid var(--card-border);cursor:pointer;transition:all .25s;
+  box-shadow:0 6px 20px -8px rgba(79,45,140,.1);
+  display:flex;flex-direction:column;gap:.7rem;position:relative;overflow:hidden;
+}
+.card-link::after{
+  content:'';position:absolute;inset:0;border-radius:1.6rem;
+  background:linear-gradient(135deg,rgba(107,78,255,.06),rgba(180,74,255,.03));
+  opacity:0;transition:opacity .25s;pointer-events:none;
+}
+.card-link:hover{transform:translateY(-5px);box-shadow:0 22px 40px -14px rgba(79,45,140,.3);border-color:var(--opt-sel-b)}
+.card-link:hover::after{opacity:1}
+.card-link .ico{
+  width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-size:1.55rem;color:#fff;box-shadow:0 10px 20px -8px rgba(0,0,0,.25);
+}
+.i-math{background:linear-gradient(135deg,#4f8eff,#7b5aff)}
+.i-eng{background:linear-gradient(135deg,#ff7b9c,#b44aff)}
+.i-flash{background:linear-gradient(135deg,#ffb347,#ff7b54)}
+.i-daily{background:linear-gradient(135deg,#20b87a,#4f8eff)}
+.i-notes{background:linear-gradient(135deg,#6b4eff,#c05eff)}
+.i-exam{background:linear-gradient(135deg,#e34f6f,#ff6b6b)}
+.i-bot{background:linear-gradient(135deg,#00c9a7,#4f8eff)}
+.card-link h3{font-size:1.05rem;font-weight:800;color:var(--heading)}
+.card-link p{font-size:.82rem;color:var(--muted);line-height:1.55}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.9rem;margin-bottom:1.6rem}
+.stat{
+  background:var(--card);border-radius:1.3rem;padding:1.1rem 1.2rem;
+  border:1px solid var(--card-border);display:flex;align-items:center;gap:.8rem;
+}
+.stat .ico{width:42px;height:42px;border-radius:12px;background:var(--opt-hover);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.1rem}
+.stat .num{font-size:1.35rem;font-weight:900;color:var(--heading);line-height:1}
+.stat .lbl{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+
+/* PRACTICE TOP BAR */
+.topbar{
+  background:var(--pill);border:1px solid var(--pill-b);border-radius:1.6rem;
+  padding:.7rem .9rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;
+  margin-bottom:1rem;
+}
+.topbar .badge{
+  background:var(--opt-hover);padding:.4rem .9rem;border-radius:100px;
+  font-weight:700;font-size:.75rem;color:var(--accent);display:flex;align-items:center;gap:.4rem;
+  white-space:nowrap;
+}
+.prog-track{flex:1;min-width:120px;height:8px;background:var(--prog);border-radius:20px;overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:20px;transition:width .35s ease}
+.chip{font-size:.75rem;font-weight:700;color:var(--muted);background:var(--pill);padding:.35rem .8rem;border-radius:30px;border:1px solid var(--pill-b);font-variant-numeric:tabular-nums}
+.chip.live{color:var(--green)}
+.chip.warn{color:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.mini{width:30px;height:30px;border-radius:9px;border:1px solid var(--pill-b);background:var(--pill);color:var(--muted);cursor:pointer;font-size:.7rem;transition:all .15s}
+.mini:hover{background:var(--opt-hover);color:var(--accent)}
+
+/* MAIN CARD */
+.card{
+  background:var(--card);border-radius:1.8rem;padding:1.6rem 1.6rem 1.5rem;
+  box-shadow:0 14px 36px -14px rgba(80,45,150,.16);border:1px solid var(--card-border);
+}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.tag{
+  font-size:.7rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+  padding:.32rem .9rem;border-radius:100px;background:var(--opt-hover);color:var(--accent);
+  border:1px solid var(--opt-border);
+}
+.diff{display:inline-flex;align-items:center;gap:.35rem;font-size:.7rem;font-weight:800;padding:.32rem .85rem;border-radius:100px;color:#fff}
+.diff.green{background:var(--green)}.diff.orange{background:var(--orange)}.diff.red{background:var(--red)}
+.qtext{font-size:1.12rem;font-weight:600;line-height:1.55;color:var(--heading);margin-bottom:1.1rem}
+.passage{
+  background:var(--passage);border-left:5px solid var(--passage-b);
+  padding:1.1rem 1.3rem;border-radius:1.1rem;margin-bottom:1.3rem;
+  font-size:.92rem;line-height:1.7;color:var(--text);border:1px solid var(--opt-border);
+}
+.opts{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.3rem}
+.opt{
+  background:var(--opt);border:1.8px solid var(--opt-border);border-radius:1.1rem;
+  padding:.9rem 1.15rem;font-size:.92rem;font-weight:500;
+  display:flex;align-items:center;gap:.85rem;cursor:pointer;transition:all .15s;color:var(--text);
+}
+.opt:hover{background:var(--opt-hover);border-color:#b7a2ff;transform:translateX(3px)}
+.opt.selected{background:var(--opt-sel);border-color:var(--opt-sel-b);box-shadow:0 0 0 3px rgba(183,162,255,.25)}
+.opt.correct{background:#d9f5e4;border-color:var(--green)}
+[data-theme="dark"] .opt.correct{background:#16372a;border-color:var(--green)}
+.opt.wrong{background:#ffe6e9;border-color:var(--red)}
+[data-theme="dark"] .opt.wrong{background:#3a1a22;border-color:var(--red)}
+.opt .letter{
+  width:28px;height:28px;background:var(--card);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;
+  color:var(--accent);border:1px solid var(--opt-border);flex-shrink:0;
+}
+.opt.selected .letter{background:var(--opt-sel-b);color:#fff;border-color:var(--opt-sel-b)}
+.opt.correct .letter{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.wrong .letter{background:var(--red);color:#fff;border-color:var(--red)}
+.fb{
+  display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;font-weight:500;
+  margin-bottom:1.2rem;padding:.9rem 1.15rem;border-radius:1.2rem;
+  background:var(--fb);border-left:5px solid #ab8aff;color:var(--text);line-height:1.65;
+}
+.fb i{font-size:1.05rem;color:var(--accent);margin-top:2px;flex-shrink:0}
+.fb.ok{border-left-color:var(--green)} .fb.ok i{color:var(--green)}
+.fb.no{border-left-color:var(--red)} .fb.no i{color:var(--red)}
+.actions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.7rem}
+.btns{display:flex;gap:.55rem;flex-wrap:wrap}
+.btn{
+  border:none;padding:.7rem 1.35rem;border-radius:50px;font-weight:700;font-size:.84rem;
+  display:flex;align-items:center;gap:.5rem;cursor:pointer;transition:all .2s;
+  background:var(--card);color:var(--accent);border:1.5px solid var(--opt-border);
+  font-family:inherit;
+}
+.btn:hover{background:var(--opt-hover);border-color:#b197ff;transform:translateY(-2px)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;box-shadow:0 10px 20px -10px rgba(107,78,255,.8)}
+.btn.primary:hover{box-shadow:0 14px 26px -10px rgba(107,78,255,1)}
+.btn.danger{background:var(--red);border-color:var(--red);color:#fff}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.45;pointer-events:none}
+.btn .flag-on{color:var(--orange)}
+
+/* REVIEW PANEL */
+.review-panel{
+  margin-top:1.2rem;background:var(--card);border-radius:1.6rem;
+  border:1px solid var(--card-border);padding:1.3rem;display:none;
+}
+.review-panel.open{display:block;animation:fadeIn .3s}
+.review-panel h3{font-size:1rem;font-weight:800;color:var(--heading);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.q-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:.5rem;margin-bottom:1rem}
+.q-cell{
+  aspect-ratio:1;border-radius:11px;border:1.6px solid var(--opt-border);
+  background:var(--opt);font-weight:800;font-size:.82rem;color:var(--muted);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;position:relative;font-family:inherit;
+}
+.q-cell:hover{transform:scale(1.08);border-color:var(--accent)}
+.q-cell.current{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent;box-shadow:0 6px 12px -6px rgba(107,78,255,.7)}
+.q-cell.answered{background:rgba(79,142,255,.15);border-color:var(--blue);color:var(--blue)}
+.q-cell.flagged::after{
+  content:'★';position:absolute;top:-2px;right:0;font-size:.7rem;color:var(--orange);
+}
+.q-cell.correct{background:rgba(32,184,122,.18);border-color:var(--green);color:var(--green)}
+.q-cell.wrong{background:rgba(227,79,111,.15);border-color:var(--red);color:var(--red)}
+.legend{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.72rem;color:var(--muted);font-weight:600}
+.legend span{display:flex;align-items:center;gap:.35rem}
+.legend .dot{width:11px;height:11px;border-radius:4px;border:1.5px solid var(--opt-border)}
+.legend .dot.cur{background:var(--accent);border-color:var(--accent)}
+.legend .dot.ans{background:rgba(79,142,255,.25);border-color:var(--blue)}
+.legend .dot.ok{background:rgba(32,184,122,.25);border-color:var(--green)}
+.legend .dot.no{background:rgba(227,79,111,.2);border-color:var(--red)}
+.legend .dot.fl{position:relative;border-color:var(--orange)}
+.legend .dot.fl::after{content:'★';position:absolute;top:-6px;right:-4px;font-size:.6rem;color:var(--orange)}
+
+/* FLASHCARDS */
+.flash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.flash{
+  background:var(--card);border-radius:1.4rem;padding:1.5rem 1.2rem;
+  border:1.6px solid var(--opt-border);text-align:center;cursor:pointer;
+  transition:all .25s;min-height:170px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.6rem;
+  box-shadow:0 6px 16px -8px rgba(79,45,140,.1);
+}
+.flash:hover{transform:translateY(-4px) scale(1.01);border-color:#b7a2ff;box-shadow:0 16px 30px -12px rgba(79,45,140,.25)}
+.flash .t{font-size:1rem;font-weight:800;color:var(--heading)}
+.flash .d{font-size:.83rem;color:var(--muted);line-height:1.55;display:none}
+.flash.flipped{background:linear-gradient(135deg,var(--opt-hover),var(--card))}
+.flash.flipped .d{display:block}
+.flash.flipped .t{color:var(--accent)}
+
+/* NOTES */
+.note{background:var(--card);border-radius:1.4rem;padding:1.4rem;border:1px solid var(--card-border);margin-bottom:1rem}
+.note h3{font-size:1.05rem;font-weight:800;color:var(--heading);margin-bottom:.75rem;display:flex;align-items:center;gap:.55rem}
+.note h3 i{color:var(--accent)}
+.note ul{list-style:none}
+.note li{font-size:.88rem;color:var(--muted);line-height:1.7;padding-left:1.4rem;position:relative;margin-bottom:.4rem}
+.note li::before{content:'•';color:var(--accent);font-weight:900;position:absolute;left:.3rem}
+.ex{background:var(--passage);border-left:4px solid var(--passage-b);padding:.75rem 1rem;border-radius:.85rem;margin:.5rem 0 .5rem 1.4rem;font-size:.83rem;color:var(--text);line-height:1.6}
+.ex strong{color:var(--accent)}
+
+/* CHATBOT */
+.chat-wrap{
+  background:var(--card);border-radius:1.8rem;border:1px solid var(--card-border);
+  display:flex;flex-direction:column;height:640px;overflow:hidden;
+}
+.chat-head{
+  padding:1rem 1.3rem;border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;gap:.7rem;background:var(--opt-hover);
+}
+.chat-head .av{
+  width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#00c9a7,#4f8eff);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;
+}
+.chat-head .info{flex:1}
+.chat-head .info h4{font-size:.95rem;font-weight:800;color:var(--heading)}
+.chat-head .info p{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.3rem}
+.chat-head .info p::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(32,184,122,.25)}
+.chat-body{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:.9rem;background:var(--card)}
+.chat-body::-webkit-scrollbar{width:6px}
+.chat-body::-webkit-scrollbar-thumb{background:var(--opt-border);border-radius:10px}
+.msg{max-width:82%;padding:.8rem 1.1rem;border-radius:1.2rem;font-size:.88rem;line-height:1.6;animation:fadeIn .3s}
+.msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-bottom-right-radius:5px}
+.msg.bot{align-self:flex-start;background:var(--opt-hover);color:var(--text);border-bottom-left-radius:5px;border:1px solid var(--opt-border)}
+.msg.bot strong{color:var(--accent)}
+.msg.bot ul{margin:.4rem 0 0 1rem;padding-left:.6rem}
+.msg.bot li{margin-bottom:.25rem}
+.msg.bot code{background:rgba(107,78,255,.15);padding:.1rem .4rem;border-radius:5px;font-size:.85em;color:var(--accent)}
+.quick-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.7rem 1.2rem;border-top:1px solid var(--card-border);background:var(--card)}
+.qc{
+  background:var(--opt-hover);border:1px solid var(--opt-border);color:var(--accent);
+  padding:.35rem .8rem;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;
+  transition:all .15s;font-family:inherit;
+}
+.qc:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chat-input{
+  display:flex;gap:.6rem;padding:.9rem 1.1rem;border-top:1px solid var(--card-border);
+  background:var(--opt-hover);
+}
+.chat-input input{
+  flex:1;border:1.5px solid var(--opt-border);background:var(--card);color:var(--text);
+  padding:.75rem 1.1rem;border-radius:50px;font-size:.88rem;font-family:inherit;outline:none;
+  transition:all .15s;
+}
+.chat-input input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(107,78,255,.15)}
+.chat-input button{
+  border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+  box-shadow:0 8px 16px -8px rgba(107,78,255,.8);
+}
+.chat-input button:hover{transform:scale(1.06)}
+
+/* SETTINGS PANEL */
+.settings-panel{
+  position:fixed;top:0;right:-420px;width:400px;max-width:92vw;height:100vh;
+  background:var(--card);box-shadow:-20px 0 50px rgba(0,0,0,.2);
+  transition:right .35s cubic-bezier(.4,0,.2,1);z-index:1000;
+  display:flex;flex-direction:column;overflow-y:auto;
+}
+.settings-panel.open{right:0}
+.settings-head{
+  padding:1.2rem 1.4rem;border-bottom:1px solid var(--card-border);
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;background:var(--card);z-index:2;
+}
+.settings-head h3{font-size:1.1rem;font-weight:800;color:var(--heading);display:flex;align-items:center;gap:.5rem}
+.close-x{background:transparent;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;width:36px;height:36px;border-radius:10px;transition:all .15s}
+.close-x:hover{background:var(--opt-hover);color:var(--accent)}
+.setting-group{padding:1.1rem 1.4rem;border-bottom:1px solid var(--card-border)}
+.setting-group h4{font-size:.75rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.7rem}
+.setting-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.5rem 0}
+.setting-row label{font-size:.87rem;font-weight:600;color:var(--text);flex:1}
+.setting-row .desc{font-size:.72rem;color:var(--muted);display:block;margin-top:.15rem;font-weight:400}
+.switch{
+  width:46px;height:26px;background:var(--prog);border-radius:100px;position:relative;
+  cursor:pointer;border:none;transition:background .25s;flex-shrink:0;
+}
+.switch::after{
+  content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;
+  background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+.switch.on{background:var(--accent)}
+.switch.on::after{transform:translateX(20px)}
+select{
+  background:var(--opt);border:1.5px solid var(--opt-border);color:var(--text);
+  padding:.5rem .9rem;border-radius:10px;font-size:.82rem;font-weight:600;font-family:inherit;
+  cursor:pointer;outline:none;
+}
+select:focus{border-color:var(--accent)}
+.slider-row{display:flex;align-items:center;gap:.7rem}
+input[type="range"]{
+  flex:1;-webkit-appearance:none;height:6px;border-radius:10px;
+  background:var(--prog);outline:none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));cursor:pointer;
+  box-shadow:0 4px 10px -4px rgba(107,78,255,.8);
+}
+input[type="range"]::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));cursor:pointer;
+}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s;z-index:999}
+.overlay.on{opacity:1;pointer-events:auto}
+
+/* EXAM MODE */
+.exam-hero{background:var(--card);border-radius:1.8rem;padding:2rem;border:1px solid var(--card-border)}
+.exam-hero h2{font-size:1.5rem;font-weight:900;color:var(--heading);margin-bottom:.6rem;display:flex;align-items:center;gap:.6rem}
+.exam-hero p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:1.3rem}
+.mod-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.9rem;margin-bottom:1.5rem}
+.mod-item{background:var(--opt);border:1.5px solid var(--opt-border);border-radius:1.2rem;padding:1.1rem;text-align:center}
+.mod-item .n{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mod-item .l{font-size:.75rem;font-weight:700;color:var(--muted);margin-top:.3rem}
+.score-final{text-align:center;padding:2rem}
+.score-final .big{font-size:4.5rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.4rem}
+.score-final .section-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.score-final .sc{background:var(--opt);border:1px solid var(--opt-border);border-radius:1.2rem;padding:1.1rem 1.6rem;min-width:150px}
+.score-final .sc .k{font-size:.75rem;color:var(--muted);font-weight:700}
+.score-final .sc .v{font-size:1.7rem;font-weight:900;color:var(--accent)}
+
+/* TOASTS */
+.toast-wrap{position:fixed;top:1.5rem;right:1.5rem;z-index:2000;display:flex;flex-direction:column;gap:.6rem;pointer-events:none}
+.toast{
+  background:var(--card);border:1px solid var(--card-border);border-left:4px solid var(--accent);
+  padding:.8rem 1.1rem;border-radius:1rem;box-shadow:0 14px 30px -10px rgba(0,0,0,.3);
+  font-size:.85rem;font-weight:600;color:var(--text);min-width:240px;max-width:340px;
+  animation:slideIn .35s ease;pointer-events:auto;
+}
+@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+.toast.ok{border-left-color:var(--green)}
+.toast.no{border-left-color:var(--red)}
+.toast.warn{border-left-color:var(--orange)}
+
+/* EMPTY */
+.empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.empty i{font-size:3rem;color:var(--opt-border);display:block;margin-bottom:1rem}
+
+@media (max-width:760px){
+  body{padding:.55rem;font-size:14px}
+  .app{padding:1rem;border-radius:1.5rem}
+  .header{flex-direction:column;align-items:flex-start;gap:.7rem}
+  .nav{width:100%;justify-content:center;overflow-x:auto;flex-wrap:nowrap}
+  .hero h2{font-size:1.5rem}
+  .hero{padding:1.6rem 1.3rem}
+  .card{padding:1.2rem}
+  .qtext{font-size:1rem}
+  .btn{padding:.6rem 1rem;font-size:.78rem}
+  .msg{max-width:92%}
+  .chat-wrap{height:520px}
+  .settings-panel{width:100%;right:-100%}
+}
+</style>
+</head>
+<body>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- SETTINGS PANEL -->
+<aside class="settings-panel" id="settingsPanel">
+  <div class="settings-head">
+    <h3><i class="fas fa-sliders-h"></i> Settings</h3>
+    <button class="close-x" id="closeSettings"><i class="fas fa-times"></i></button>
+  </div>
+
+  <div class="setting-group">
+    <h4>Appearance</h4>
+    <div class="setting-row">
+      <label>Dark mode <span class="desc">Easier on the eyes at night</span></label>
+      <button class="switch" id="setDark"></button>
+    </div>
+    <div class="setting-row">
+      <label>Font size</label>
+      <div class="slider-row" style="width:140px">
+        <input type="range" id="setFont" min="13" max="18" step="1" value="15">
+        <span id="fontVal" style="font-size:.8rem;font-weight:700;color:var(--muted);min-width:26px">15</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <h4>Practice</h4>
+    <div class="setting-row">
+      <label>Questions per session</label>
+      <select id="setCount">
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="22" selected>22</option>
+        <option value="27">27</option>
+        <option value="40">40</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <label>Difficulty filter</label>
+      <select id="setDiff">
+        <option value="all" selected>All levels</option>
+        <option value="easy">Easy only</option>
+        <option value="medium">Medium only</option>
+        <option value="hard">Hard only</option>
+        <option value="mixed">Mixed progression</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <label>Show timer <span class="desc">Module countdown timer</span></label>
+      <button class="switch on" id="setTimer"></button>
+    </div>
+    <div class="setting-row">
+      <label>Instant feedback <span class="desc">Reveal answer right after checking</span></label>
+      <button class="switch on" id="setInstant"></button>
+    </div>
+    <div class="setting-row">
+      <label>Auto-advance <span class="desc">Move to next question after correct</span></label>
+      <button class="switch" id="setAuto"></button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <h4>Exam</h4>
+    <div class="setting-row">
+      <label>Strict timing <span class="desc">Force end when timer runs out</span></label>
+      <button class="switch on" id="setStrict"></button>
+    </div>
+    <div class="setting-row">
+      <label>Review mode <span class="desc">Allow jumping between questions</span></label>
+      <button class="switch on" id="setReview"></button>
+    </div>
+  </div>
+
+  <div class="setting-group">
+    <h4>Data</h4>
+    <div class="setting-row">
+      <button class="btn ghost" id="resetStats" style="width:100%;justify-content:center">
+        <i class="fas fa-trash-alt"></i> Reset all statistics
+      </button>
+    </div>
+  </div>
+</aside>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-mark"><i class="fas fa-infinity"></i></div>
+      <div>
+        <h1>SAT Infinity</h1>
+        <span class="sub"><i class="fas fa-bolt" style="color:#8a6eff"></i> bluebook-style · endless practice</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn" id="openChat" title="AI Study Buddy"><i class="fas fa-robot"></i></button>
+      <button class="icon-btn" id="openSettings" title="Settings"><i class="fas fa-cog"></i></button>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <button class="nav-btn active" data-page="home"><i class="fas fa-home"></i> Home</button>
+    <button class="nav-btn" data-page="math"><i class="fas fa-calculator"></i> Math</button>
+    <button class="nav-btn" data-page="english"><i class="fas fa-book"></i> English</button>
+    <button class="nav-btn" data-page="exam"><i class="fas fa-file-alt"></i> Full Exam</button>
+    <button class="nav-btn" data-page="flash"><i class="fas fa-clone"></i> Flashcards</button>
+    <button class="nav-btn" data-page="notes"><i class="fas fa-sticky-note"></i> Notes</button>
+    <button class="nav-btn" data-page="chat"><i class="fas fa-robot"></i> AI Buddy</button>
+  </nav>
+
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <h2>Welcome back. Ready to score higher?</h2>
+      <p>Endless practice questions in Bluebook style, a full 4-module exam simulator, flashcards, notes, and an AI study buddy — all in one place. Every question is generated fresh so you never run out.</p>
+      <div class="pill-row">
+        <span class="hero-pill"><i class="fas fa-infinity"></i> Endless questions</span>
+        <span class="hero-pill"><i class="fas fa-clock"></i> Real timing</span>
+        <span class="hero-pill"><i class="fas fa-robot"></i> AI hints</span>
+        <span class="hero-pill"><i class="fas fa-chart-line"></i> Score report</span>
+      </div>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+      <div class="stat"><div class="ico"><i class="fas fa-fire"></i></div><div><div class="num" id="statStreak">0</div><div class="lbl">Day streak</div></div></div>
+      <div class="stat"><div class="ico"><i class="fas fa-check-double"></i></div><div><div class="num" id="statCorrect">0</div><div class="lbl">Correct</div></div></div>
+      <div class="stat"><div class="ico"><i class="fas fa-list-ol"></i></div><div><div class="num" id="statAttempted">0</div><div class="lbl">Attempted</div></div></div>
+      <div class="stat"><div class="ico"><i class="fas fa-percentage"></i></div><div><div class="num" id="statAcc">0%</div><div class="lbl">Accuracy</div></div></div>
+    </div>
+
+    <div class="grid">
+      <div class="card-link" data-page="math">
+        <div class="ico i-math"><i class="fas fa-calculator"></i></div>
+        <h3>Math Practice</h3>
+        <p>Endless generated problems across algebra, data, geometry & trig.</p>
+      </div>
+      <div class="card-link" data-page="english">
+        <div class="ico i-eng"><i class="fas fa-book-open"></i></div>
+        <h3>English Practice</h3>
+        <p>Bluebook-style reading, grammar & vocabulary questions.</p>
+      </div>
+      <div class="card-link" data-page="exam">
+        <div class="ico i-exam"><i class="fas fa-file-alt"></i></div>
+        <h3>Full SAT Exam</h3>
+        <p>4 modules · 1600 points · real adaptive timing simulation.</p>
+      </div>
+      <div class="card-link" data-page="flash">
+        <div class="ico i-flash"><i class="fas fa-clone"></i></div>
+        <h3>Flashcards</h3>
+        <p>Key formulas and terms. Tap any card to flip.</p>
+      </div>
+      <div class="card-link" data-page="notes">
+        <div class="ico i-notes"><i class="fas fa-sticky-note"></i></div>
+        <h3>Study Notes</h3>
+        <p>Concise summaries with worked examples for every topic.</p>
+      </div>
+      <div class="card-link" data-page="chat">
+        <div class="ico i-bot"><i class="fas fa-robot"></i></div>
+        <h3>AI Study Buddy</h3>
+        <p>Ask about strategy, formulas, timing, or any question.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATH PAGE -->
+  <section class="page" id="page-math">
+    <div class="topbar">
+      <span class="badge"><i class="fas fa-calculator"></i> <span id="mathDomain">Algebra</span></span>
+      <div class="prog-track"><div class="prog-fill" id="mathProg"></div></div>
+      <span class="chip" id="mathChip">1 / 22</span>
+      <span class="chip" id="mathTimer"><i class="fas fa-clock"></i> 35:00</span>
+      <button class="mini" id="mathTimerToggle" title="Start/Pause"><i class="fas fa-play"></i></button>
+      <button class="mini" id="mathTimerReset" title="Reset timer"><i class="fas fa-redo"></i></button>
+      <button class="mini" id="mathReviewBtn" title="Question map"><i class="fas fa-th"></i></button>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <span class="tag" id="mathTag">Algebra</span>
+        <span class="diff green" id="mathDiff"><i class="fas fa-circle" style="font-size:.5rem"></i> Easy</span>
+      </div>
+      <div class="qtext" id="mathQ">Loading question…</div>
+      <div class="passage" id="mathPassage" style="display:none"></div>
+      <div class="opts" id="mathOpts"></div>
+      <div class="fb" id="mathFb" style="display:none"><i class="fas fa-lightbulb"></i><span id="mathFbText"></span></div>
+      <div class="actions">
+        <div class="btns">
+          <button class="btn" id="mathPrev" disabled><i class="fas fa-arrow-left"></i> Prev</button>
+          <button class="btn" id="mathNext">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="btns">
+          <button class="btn ghost" id="mathFlag"><i class="fas fa-star"></i> Flag</button>
+          <button class="btn ghost" id="mathSkip">Skip</button>
+          <button class="btn primary" id="mathCheck"><i class="fas fa-check-circle"></i> Check</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-panel" id="mathReview">
+      <h3><i class="fas fa-th"></i> Question Map</h3>
+      <div class="q-grid" id="mathGrid"></div>
+      <div class="legend">
+        <span><span class="dot cur"></span> Current</span>
+        <span><span class="dot ans"></span> Answered</span>
+        <span><span class="dot ok"></span> Correct</span>
+        <span><span class="dot no"></span> Wrong</span>
+        <span><span class="dot fl"></span> Flagged</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGLISH PAGE -->
+  <section class="page" id="page-english">
+    <div class="topbar">
+      <span class="badge"><i class="fas fa-book"></i> <span id="engDomain">Craft & Structure</span></span>
+      <div class="prog-track"><div class="prog-fill" id="engProg"></div></div>
+      <span class="chip" id="engChip">1 / 22</span>
+      <span class="chip" id="engTimer"><i class="fas fa-clock"></i> 32:00</span>
+      <button class="mini" id="engTimerToggle" title="Start/Pause"><i class="fas fa-play"></i></button>
+      <button class="mini" id="engTimerReset" title="Reset timer"><i class="fas fa-redo"></i></button>
+      <button class="mini" id="engReviewBtn" title="Question map"><i class="fas fa-th"></i></button>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <span class="tag" id="engTag">Craft & Structure</span>
+        <span class="diff green" id="engDiff"><i class="fas fa-circle" style="font-size:.5rem"></i> Easy</span>
+      </div>
+      <div class="qtext" id="engQ">Loading question…</div>
+      <div class="passage" id="engPassage" style="display:none"></div>
+      <div class="opts" id="engOpts"></div>
+      <div class="fb" id="engFb" style="display:none"><i class="fas fa-lightbulb"></i><span id="engFbText"></span></div>
+      <div class="actions">
+        <div class="btns">
+          <button class="btn" id="engPrev" disabled><i class="fas fa-arrow-left"></i> Prev</button>
+          <button class="btn" id="engNext">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="btns">
+          <button class="btn ghost" id="engFlag"><i class="fas fa-star"></i> Flag</button>
+          <button class="btn ghost" id="engSkip">Skip</button>
+          <button class="btn primary" id="engCheck"><i class="fas fa-check-circle"></i> Check</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-panel" id="engReview">
+      <h3><i class="fas fa-th"></i> Question Map</h3>
+      <div class="q-grid" id="engGrid"></div>
+      <div class="legend">
+        <span><span class="dot cur"></span> Current</span>
+        <span><span class="dot ans"></span> Answered</span>
+        <span><span class="dot ok"></span> Correct</span>
+        <span><span class="dot no"></span> Wrong</span>
+        <span><span class="dot fl"></span> Flagged</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM PAGE -->
+  <section class="page" id="page-exam">
+    <div id="examSetup">
+      <div class="exam-hero">
+        <h2><i class="fas fa-file-alt" style="color:var(--red)"></i> Full SAT Exam Simulation</h2>
+        <p>Four adaptive modules — two Reading & Writing, two Math — timed exactly like the Bluebook app. Answer every question to get your estimated score out of 1600.</p>
+        <div class="mod-list">
+          <div class="mod-item"><div class="n">M1</div><div class="l">Reading & Writing<br>Module 1 · 32 min</div></div>
+          <div class="mod-item"><div class="n">M2</div><div class="l">Reading & Writing<br>Module 2 · 32 min</div></div>
+          <div class="mod-item"><div class="n">M3</div><div class="l">Math<br>Module 1 · 35 min</div></div>
+          <div class="mod-item"><div class="n">M4</div><div class="l">Math<br>Module 2 · 35 min</div></div>
+        </div>
+        <div style="text-align:center">
+          <button class="btn primary" id="examStart" style="font-size:1rem;padding:1rem 2.4rem">
+            <i class="fas fa-play-circle"></i> Start Full Exam
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="examActive" style="display:none">
+      <div class="topbar">
+        <span class="badge"><i class="fas fa-file-alt"></i> <span id="examMod">Module 1 · Reading & Writing</span></span>
+        <div class="prog-track"><div class="prog-fill" id="examProg"></div></div>
+        <span class="chip" id="examChip">1 / 27</span>
+        <span class="chip warn" id="examTimer"><i class="fas fa-clock"></i> 32:00</span>
+        <button class="mini" id="examReviewBtn" title="Question map"><i class="fas fa-th"></i></button>
+      </div>
+      <div class="card">
+        <div class="row">
+          <span class="tag" id="examTag">Craft & Structure</span>
+          <span class="diff green" id="examDiff"><i class="fas fa-circle" style="font-size:.5rem"></i> Easy</span>
+        </div>
+        <div class="qtext" id="examQ"></div>
+        <div class="passage" id="examPassage" style="display:none"></div>
+        <div class="opts" id="examOpts"></div>
+        <div class="fb" id="examFb" style="display:none"><i class="fas fa-lightbulb"></i><span id="examFbText"></span></div>
+        <div class="actions">
+          <div class="btns">
+            <button class="btn" id="examPrev" disabled><i class="fas fa-arrow-left"></i> Prev</button>
+            <button class="btn" id="examNext">Next <i class="fas fa-arrow-right"></i></button>
+          </div>
+          <div class="btns">
+            <button class="btn ghost" id="examFlag"><i class="fas fa-star"></i> Flag</button>
+            <button class="btn ghost" id="examSkip">Skip</button>
+            <button class="btn primary" id="examCheck"><i class="fas fa-check-circle"></i> Check</button>
+            <button class="btn danger" id="examEnd"><i class="fas fa-stop-circle"></i> End</button>
+          </div>
+        </div>
+      </div>
+      <div class="review-panel" id="examReviewPanel">
+        <h3><i class="fas fa-th"></i> Module Map</h3>
+        <div class="q-grid" id="examGrid"></div>
+        <div class="legend">
+          <span><span class="dot cur"></span> Current</span>
+          <span><span class="dot ans"></span> Answered</span>
+          <span><span class="dot fl"></span> Flagged</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="examResults" style="display:none">
+      <div class="card">
+        <div class="score-final">
+          <h2 style="font-size:1.4rem;font-weight:900;color:var(--heading);margin-bottom:1rem">Your SAT Score Report</h2>
+          <div class="big" id="finalScore">0</div>
+          <p style="color:var(--muted);font-size:.9rem">out of 1600</p>
+          <div class="section-row">
+            <div class="sc"><div class="k">Reading & Writing</div><div class="v" id="rwScore">0</div></div>
+            <div class="sc"><div class="k">Math</div><div class="v" id="mathScore">0</div></div>
+          </div>
+          <div style="margin-top:1.6rem">
+            <button class="btn primary" id="examRetake"><i class="fas fa-redo"></i> Retake Exam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section class="page" id="page-flash">
+    <h2 style="font-size:1.3rem;font-weight:900;color:var(--heading);margin-bottom:.4rem">Flashcards</h2>
+    <p style="color:var(--muted);font-size:.85rem;margin-bottom:1.1rem">Tap any card to flip it and reveal the answer.</p>
+    <div class="flash-grid" id="flashGrid"></div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="page" id="page-notes">
+    <h2 style="font-size:1.3rem;font-weight:900;color:var(--heading);margin-bottom:1rem">Study Notes</h2>
+    <div class="note">
+      <h3><i class="fas fa-book"></i> Reading & Writing — Craft & Structure</h3>
+      <ul>
+        <li><strong>Words in Context:</strong> use surrounding clues to pick the most precise word.</li>
+        <li><strong>Text Structure:</strong> identify how sentences are organised (compare, contrast, cause-effect).</li>
+        <li><strong>Cross-Text Connections:</strong> compare two short passages on the same topic.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3><i class="fas fa-pen-fancy"></i> Standard English Conventions</h3>
+      <ul>
+        <li><strong>Boundaries:</strong> avoid comma splices and run-ons; use semicolons and periods correctly.</li>
+        <li><strong>Form & Sense:</strong> subject-verb agreement, pronoun clarity, verb tense consistency.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3><i class="fas fa-calculator"></i> Math — Formulas with Worked Examples</h3>
+      <ul>
+        <li><strong>Slope:</strong> m = (y₂ − y₁) / (x₂ − x₁)</li>
+        <div class="ex"><strong>Example:</strong> Slope through (2,3) and (6,11): m = (11−3)/(6−2) = 8/4 = <strong>2</strong>.</div>
+        <li><strong>Quadratic:</strong> x = [−b ± √(b² − 4ac)] / 2a</li>
+        <div class="ex"><strong>Example:</strong> x² − 5x + 6 = 0 → x = [5 ± √(25−24)]/2 = (5±1)/2 → <strong>x = 3 or 2</strong>.</div>
+        <li><strong>Circle:</strong> (x − h)² + (y − k)² = r²</li>
+        <div class="ex"><strong>Example:</strong> Centre (2,−3), r=4 → <strong>(x−2)² + (y+3)² = 16</strong>.</div>
+        <li><strong>Percent change:</strong> (new − old) / old × 100</li>
+        <div class="ex"><strong>Example:</strong> $80 → $100 → (100−80)/80 × 100 = <strong>25%</strong>.</div>
+      </ul>
+    </div>
+    <div class="note">
+      <h3><i class="fas fa-lightbulb"></i> Expression of Ideas</h3>
+      <ul>
+        <li><strong>Transitions:</strong> However (contrast), Therefore (result), Similarly (agreement).</li>
+        <li><strong>Rhetorical Synthesis:</strong> use bullet notes to achieve a specific writing goal.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section class="page" id="page-chat">
+    <div class="chat-wrap">
+      <div class="chat-head">
+        <div class="av"><i class="fas fa-robot"></i></div>
+        <div class="info">
+          <h4>AI Study Buddy</h4>
+          <p>Online · rule-based helper</p>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="quick-chips" id="chatChips">
+        <button class="qc" data-q="How do I improve my SAT math score?">Math tips</button>
+        <button class="qc" data-q="Give me a strategy for reading questions">Reading strategy</button>
+        <button class="qc" data-q="Explain the quadratic formula">Quadratic</button>
+        <button class="qc" data-q="How long is each SAT module?">Timing</button>
+        <button class="qc" data-q="What is a comma splice?">Comma splice</button>
+        <button class="qc" data-q="Tips for the full exam">Exam tips</button>
+      </div>
+      <div class="chat-input">
+        <input id="chatInput" placeholder="Ask about strategy, formulas, timing…" autocomplete="off">
+        <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+var $ = function(id){ return document.getElementById(id); };
+function el(tag, cls, html){ var e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; }
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function pick(arr){ return arr[randInt(0,arr.length-1)]; }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=randInt(0,i); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function fmtTime(s){ var m=String(Math.floor(s/60)).padStart(2,'0'); var ss=String(s%60).padStart(2,'0'); return m+':'+ss; }
+function gcd(a,b){ return b===0?a:gcd(b,a%b); }
+
+function toast(msg, type){
+  var t = el('div','toast '+(type||''), msg);
+  $('toasts').appendChild(t);
+  setTimeout(function(){ t.style.transition='opacity .3s,transform .3s'; t.style.opacity='0'; t.style.transform='translateX(400px)'; setTimeout(function(){ t.remove(); },300); }, 2800);
+}
+
+/* ============================================================
+   SETTINGS
+============================================================ */
+var settings = {
+  dark: false,
+  fontSize: 15,
+  count: 22,
+  diff: 'all',
+  showTimer: true,
+  instant: true,
+  auto: false,
+  strict: true,
+  review: true
+};
+try{
+  var saved = localStorage.getItem('sat-inf-settings');
+  if(saved) settings = Object.assign(settings, JSON.parse(saved));
+}catch(e){}
+function saveSettings(){ try{ localStorage.setItem('sat-inf-settings', JSON.stringify(settings)); }catch(e){} }
+
+function applySettings(){
+  document.documentElement.setAttribute('data-theme', settings.dark?'dark':'light');
+  document.documentElement.style.setProperty('--font-size', settings.fontSize+'px');
+  $('setDark').classList.toggle('on', settings.dark);
+  $('setFont').value = settings.fontSize;
+  $('fontVal').textContent = settings.fontSize;
+  $('setCount').value = settings.count;
+  $('setDiff').value = settings.diff;
+  $('setTimer').classList.toggle('on', settings.showTimer);
+  $('setInstant').classList.toggle('on', settings.instant);
+  $('setAuto').classList.toggle('on', settings.auto);
+  $('setStrict').classList.toggle('on', settings.strict);
+  $('setReview').classList.toggle('on', settings.review);
+}
+
+/* ============================================================
+   STATS
+============================================================ */
+var stats = { correct:0, attempted:0, streak:0, lastDay:null };
+try{
+  var s2 = localStorage.getItem('sat-inf-stats');
+  if(s2) stats = Object.assign(stats, JSON.parse(s2));
+}catch(e){}
+function saveStats(){ try{ localStorage.setItem('sat-inf-stats', JSON.stringify(stats)); }catch(e){} }
+function refreshStats(){
+  $('statCorrect').textContent = stats.correct;
+  $('statAttempted').textContent = stats.attempted;
+  $('statAcc').textContent = stats.attempted ? Math.round(stats.correct/stats.attempted*100)+'%' : '0%';
+  $('statStreak').textContent = stats.streak;
+  // Update streak on load
+  var today = new Date().toDateString();
+  if(stats.lastDay !== today){
+    var yest = new Date(Date.now()-86400000).toDateString();
+    if(stats.lastDay === yest) stats.streak += 1;
+    else stats.streak = 1;
+    stats.lastDay = today;
+    saveStats();
+    $('statStreak').textContent = stats.streak;
+  }
+}
+function recordAnswer(correct){
+  stats.attempted++;
+  if(correct) stats.correct++;
+  saveStats();
+  refreshStats();
+}
+
+/* ============================================================
+   PROCEDURAL MATH QUESTION GENERATOR
+============================================================ */
+var mathGen = [
+  // 1. Linear equations
+  function(){
+    var a=randInt(2,9), x=randInt(2,12), b=randInt(1,15);
+    var c=a*x+b;
+    return {
+      d: 1, domain:'Algebra',
+      q: 'If '+a+'x + '+b+' = '+c+', what is the value of x?',
+      opts: [String(x), String(x+1), String(x-1), String(x+2)],
+      c: 0,
+      e: 'Subtract '+b+': '+a+'x = '+(c-b)+'. Divide by '+a+': x = '+x+'.'
+    };
+  },
+  // 2. Percent
+  function(){
+    var p=pick([10,15,20,25,30,40,50]), price=randInt(2,15)*10;
+    var discount = p/100*price;
+    return {
+      d: 1, domain:'Problem Solving',
+      q: 'A $'+price+' item is on sale for '+p+'% off. What is the sale price?',
+      opts: ['$'+(price-discount), '$'+(price-discount+5), '$'+(price-p), '$'+(price-1)],
+      c: 0,
+      e: p+'% of $'+price+' = $'+discount+'. $'+price+' − $'+discount+' = $'+(price-discount)+'.'
+    };
+  },
+  // 3. Pythagorean
+  function(){
+    var triples=[[3,4,5],[6,8,10],[5,12,13],[8,15,17],[9,12,15],[7,24,25]];
+    var t=pick(triples);
+    return {
+      d: 1, domain:'Geometry',
+      q: 'A right triangle has legs of length '+t[0]+' and '+t[1]+'. What is the length of the hypotenuse?',
+      opts: [String(t[2]), String(t[2]+1), String(t[2]-1), String(t[2]+2)],
+      c: 0,
+      e: 'Pythagorean theorem: '+t[0]+'² + '+t[1]+'² = '+(t[0]*t[0])+' + '+(t[1]*t[1])+' = '+(t[0]*t[0]+t[1]*t[1])+'. √'+(t[0]*t[0]+t[1]*t[1])+' = '+t[2]+'.'
+    };
+  },
+  // 4. Mean
+  function(){
+    var vals=[]; var sum=0; for(var i=0;i<4;i++){ var v=randInt(2,20); vals.push(v); sum+=v; }
+    var mean = sum/4;
+    var isInt = mean === Math.floor(mean);
+    if(!isInt){ vals[3] += (4 - (sum%4))%4; sum = vals.reduce(function(a,b){return a+b;},0); mean = sum/4; }
+    return {
+      d: 1, domain:'Data Analysis',
+      q: 'What is the mean of the numbers '+vals.join(', ')+'?',
+      opts: [String(mean), String(mean+1), String(mean-1), String(mean+2)],
+      c: 0,
+      e: 'Sum = '+sum+'. '+sum+' ÷ 4 = '+mean+'.'
+    };
+  },
+  // 5. Slope from two points (medium)
+  function(){
+    var x1=randInt(1,5), x2=x1+randInt(1,5), y1=randInt(1,10), m=randInt(1,5);
+    var y2=y1+m*(x2-x1);
+    return {
+      d: 2, domain:'Algebra',
+      q: 'What is the slope of the line passing through ('+x1+', '+y1+') and ('+x2+', '+y2+')?',
+      opts: [String(m), String(m+1), String(m-1), String(m*2)],
+      c: 0,
+      e: 'm = (y₂−y₁)/(x₂−x₁) = ('+y2+'−'+y1+')/('+x2+'−'+x1+') = '+(y2-y1)+'/'+(x2-x1)+' = '+m+'.'
+    };
+  },
+  // 6. System of equations (medium)
+  function(){
+    var x=randInt(1,8), y=randInt(1,8);
+    var a1=randInt(1,4), b1=randInt(1,4), a2=randInt(1,4), b2=randInt(1,4);
+    var c1=a1*x+b1*y, c2=a2*x+b2*y;
+    return {
+      d: 2, domain:'Algebra',
+      q: 'If '+a1+'x + '+b1+'y = '+c1+' and '+a2+'x + '+b2+'y = '+c2+', what is x + y?',
+      opts: [String(x+y), String(x+y+1), String(x+y-1), String(x+y+3)],
+      c: 0,
+      e: 'Solving the system gives x = '+x+' and y = '+y+'. So x + y = '+(x+y)+'.'
+    };
+  },
+  // 7. Circle equation (medium)
+  function(){
+    var h=randInt(-5,5), k=randInt(-5,5), r=randInt(2,8);
+    var kStr = k>=0 ? '+ '+k : '− '+Math.abs(k);
+    var hStr = h>=0 ? '− '+h : '+ '+Math.abs(h);
+    var correct = '(x '+hStr+')² + (y '+kStr+')² = '+(r*r);
+    return {
+      d: 2, domain:'Geometry',
+      q: 'What is the equation of a circle with centre ('+h+', '+k+') and radius '+r+'?',
+      opts: [correct, '(x '+hStr+')² + (y '+kStr+')² = '+r, '(x + '+h+')² + (y + '+k+')² = '+(r*r), '(x '+hStr+')² + (y '+kStr+')² = '+(r*r+1)],
+      c: 0,
+      e: 'General form: (x−h)² + (y−k)² = r². With h='+h+', k='+k+', r='+r+', this gives '+correct+'.'
+    };
+  },
+  // 8. Quadratic (hard)
+  function(){
+    var r1=randInt(1,6), r2=randInt(1,6);
+    var b=-(r1+r2), c=r1*r2;
+    var bStr = b<0 ? '− '+Math.abs(b) : '+ '+b;
+    var cStr = c<0 ? '− '+Math.abs(c) : '+ '+c;
+    return {
+      d: 3, domain:'Algebra',
+      q: 'What are the solutions to x² '+bStr+'x '+cStr+' = 0?',
+      opts: ['x = '+r1+' or x = '+r2, 'x = '+(r1+1)+' or x = '+(r2+1), 'x = −'+r1+' or x = −'+r2, 'x = 0 or x = '+(r1+r2)],
+      c: 0,
+      e: 'Factor as (x − '+r1+')(x − '+r2+') = 0, so x = '+r1+' or x = '+r2+'.'
+    };
+  },
+  // 9. Exponential growth (hard)
+  function(){
+    var p=randInt(2,10)*100, r=pick([5,10,15,20,25]), years=randInt(2,5);
+    var final = Math.round(p*Math.pow(1+r/100, years));
+    return {
+      d: 3, domain:'Problem Solving',
+      q: 'A population starts at '+p+' and grows by '+r+'% per year. What is the population after '+years+' years (rounded)?',
+      opts: [String(final), String(final+50), String(final-50), String(p+years*r)],
+      c: 0,
+      e: 'A = P(1+r)^t = '+p+'(1+'+r+'/100)^'+years+' ≈ '+final+'.'
+    };
+  },
+  // 10. Function evaluation (hard)
+  function(){
+    var a=randInt(2,4), b=randInt(-5,5), c=randInt(-5,5), x=randInt(-4,-1);
+    var result = a*x*x + b*x + c;
+    return {
+      d: 3, domain:'Algebra',
+      q: 'If f(x) = '+a+'x² '+(b>=0?'+ '+b:'− '+Math.abs(b))+'x '+(c>=0?'+ '+c:'− '+Math.abs(c))+', what is f('+x+')?',
+      opts: [String(result), String(result+3), String(result-3), String(-result)],
+      c: 0,
+      e: 'Substitute x = '+x+': '+a+'('+x+')² '+(b>=0?'+ '+b:'− '+Math.abs(b))+'('+x+') '+(c>=0?'+ '+c:'− '+Math.abs(c))+' = '+result+'.'
+    };
+  },
+  // 11. Ratio/proportion (easy)
+  function(){
+    var a=randInt(2,8), b=randInt(2,8);
+    var k=randInt(2,6);
+    return {
+      d: 1, domain:'Problem Solving',
+      q: 'If '+a+' pencils cost $'+b+', how much do '+(a*k)+' pencils cost?',
+      opts: ['$'+(b*k), '$'+(b*k+1), '$'+(b+k), '$'+(b*k-1)],
+      c: 0,
+      e: 'Unit price = $'+b+'/'+a+'. For '+(a*k)+' pencils: $'+b+' × '+k+' = $'+(b*k)+'.'
+    };
+  },
+  // 12. Median (medium)
+  function(){
+    var nums=[]; for(var i=0;i<5;i++) nums.push(randInt(1,30));
+    nums.sort(function(a,b){return a-b;});
+    var med = nums[2];
+    return {
+      d: 2, domain:'Data Analysis',
+      q: 'What is the median of '+nums.join(', ')+'?',
+      opts: [String(med), String(nums[1]), String(nums[3]), String(nums[4])],
+      c: 0,
+      e: 'Sorted: '+nums.join(', ')+'. Median (middle value) = '+med+'.'
+    };
+  },
+  // 13. Angle (easy)
+  function(){
+    var a=randInt(20,80);
+    return {
+      d: 1, domain:'Geometry',
+      q: 'Two angles form a straight line. One is '+a+'°. What is the other?',
+      opts: [String(180-a), String(90-a), String(a), String(360-a)],
+      c: 0,
+      e: 'Angles on a straight line add to 180°. 180 − '+a+' = '+(180-a)+'°.'
+    };
+  },
+  // 14. Word problem average speed (medium)
+  function(){
+    var d1=randInt(50,200), t1=randInt(1,5);
+    var speed = d1/t1;
+    if(speed !== Math.floor(speed)){ d1 = Math.round(speed)*t1; speed = d1/t1; }
+    return {
+      d: 2, domain:'Problem Solving',
+      q: 'A train travels '+d1+' km in '+t1+' hours. What is its average speed?',
+      opts: [speed+' km/h', (speed+10)+' km/h', (speed-5)+' km/h', (speed*2)+' km/h'],
+      c: 0,
+      e: 'Speed = distance / time = '+d1+' / '+t1+' = '+speed+' km/h.'
+    };
+  },
+  // 15. Simple interest (hard)
+  function(){
+    var p=randInt(2,20)*100, r=pick([3,4,5,6,7,8]), t=randInt(2,6);
+    var interest = p*r*t/100;
+    return {
+      d: 3, domain:'Problem Solving',
+      q: 'What is the simple interest on $'+p+' at '+r+'% for '+t+' years?',
+      opts: ['$'+interest, '$'+(interest+50), '$'+(interest-50), '$'+(p*r*t/10)],
+      c: 0,
+      e: 'I = PRT = '+p+' × '+r+'/100 × '+t+' = $'+interest+'.'
+    };
+  }
+];
+
+function generateMath(){
+  var q = pick(mathGen)();
+  // Ensure 4 options, unique, shuffle
+  var opts = q.opts.slice(0,4);
+  while(opts.length<4) opts.push(''+randInt(1,100));
+  // dedupe
+  var seen = {};
+  var unique = [];
+  for(var i=0;i<opts.length;i++){
+    var k = String(opts[i]);
+    if(!seen[k]){ seen[k]=1; unique.push(opts[i]); }
+  }
+  while(unique.length<4){ unique.push(String(randInt(1,200))); }
+  opts = unique.slice(0,4);
+  // make sure correct is in there
+  if(opts.indexOf(q.opts[q.c]) === -1) opts[0] = q.opts[q.c];
+  var correctVal = String(q.opts[q.c]);
+  var shuffled = shuffle(opts);
+  var newC = shuffled.indexOf(correctVal);
+  if(newC === -1){ shuffled[randInt(0,3)] = correctVal; shuffled = shuffle(shuffled); newC = shuffled.indexOf(correctVal); }
+  return { d:q.d, domain:q.domain, q:q.q, p:'', opts:shuffled, c:newC, e:q.e };
+}
+
+/* ============================================================
+   ENGLISH BANK (Bluebook-style)
+============================================================ */
+var englishBank = [
+  { d:1, domain:'Craft & Structure', p:'Although the scientist\'s initial hypothesis was met with skepticism, her rigorous experiments eventually _____ the doubt of her peers, earning their respect.',
+    q:'Which choice completes the text with the most logical and precise word?',
+    opts:['dissipated','amplified','corroborated','intensified'], c:0,
+    e:'"Dissipated" means dispelled or scattered — fits eliminating doubt. The other options imply increasing or supporting doubt.' },
+  { d:1, domain:'Standard English Conventions', p:'',
+    q:'Which choice completes the text so that it conforms to the conventions of Standard English? "The famous author, who wrote over twenty novels and numerous short stories, _____ known for her vivid descriptions of rural life."',
+    opts:['is','are','were','have been'], c:0,
+    e:'Subject is "The famous author" (singular), so the verb must be singular: "is".' },
+  { d:1, domain:'Information & Ideas', p:'Coral reefs, often called the "rainforests of the sea", support an estimated 25% of all marine species. However, rising ocean temperatures and acidification have led to widespread bleaching events, threatening the delicate balance of these ecosystems.',
+    q:'Which choice best states the main idea of the text?',
+    opts:['Coral reefs are home to many species but face serious threats from climate change.','Ocean acidification is the primary cause of coral bleaching.','The "rainforests of the sea" is a misleading term.','Millions of people depend on coral reefs for their livelihoods.'], c:0,
+    e:'The passage emphasises both biodiversity and threats. Choice A captures this dual focus.' },
+  { d:1, domain:'Expression of Ideas', p:'Many people believe that multitasking increases productivity. _____, research shows that switching between tasks actually reduces efficiency and increases errors.',
+    q:'Which choice completes the text with the most logical transition?',
+    opts:['However','Therefore','Similarly','For instance'], c:0,
+    e:'The second sentence contradicts the first, so a contrast transition like "However" is appropriate.' },
+  { d:1, domain:'Craft & Structure', p:'',
+    q:'Which choice is most precise? "The ancient city was _____ by an earthquake in 365 CE."',
+    opts:['destroyed','affected','touched','moved'], c:0,
+    e:'"Destroyed" is the strongest and most precise fit.' },
+  { d:2, domain:'Craft & Structure', p:'',
+    q:'Which word best fits: "Her _____ remarks offended the entire audience."',
+    opts:['tactful','caustic','bland','timid'], c:1,
+    e:'"Caustic" means sarcastic and biting — fits offending.' },
+  { d:2, domain:'Standard English Conventions', p:'',
+    q:'Choose the correct punctuation: "We visited Paris _____ we saw the Eiffel Tower."',
+    opts:['however','; however,',', however','however,'], c:1,
+    e:'A semicolon before the conjunctive adverb and a comma after is standard.' },
+  { d:2, domain:'Information & Ideas', p:'A recent study found a correlation between sleep duration and academic performance in high school students.',
+    q:'What can be reasonably inferred from this finding?',
+    opts:['Sleep duration may affect academic performance.','Grades cause students to sleep more.','There is no relationship between sleep and grades.','Sleep is irrelevant to academic success.'], c:0,
+    e:'A correlation suggests a possible relationship — the other choices go beyond or contradict the evidence.' },
+  { d:2, domain:'Expression of Ideas', p:'The plan was expensive. _____, it was approved by the board.',
+    q:'Which choice completes the text with the most logical transition?',
+    opts:['Nevertheless','Therefore','Similarly','For example'], c:0,
+    e:'Contrast between expensive and approved → "Nevertheless".' },
+  { d:2, domain:'Craft & Structure', p:'The author describes the approaching storm in vivid detail — the bruised sky, the charged air, the first fat drops of rain.',
+    q:'What is the primary function of the vivid description?',
+    opts:['To create atmosphere','To list facts','To argue a point','To define a term'], c:0,
+    e:'Sensory description builds atmosphere.' },
+  { d:3, domain:'Craft & Structure', p:'',
+    q:'Which choice best analyses the function of the final sentence? "It underscores the irony of the situation."',
+    opts:['It highlights a contradiction.','It summarises data.','It introduces a new topic.','It provides an example.'], c:0,
+    e:'Irony inherently involves contradiction — "underscores" emphasises this.' },
+  { d:3, domain:'Standard English Conventions', p:'',
+    q:'Identify the error: "The team, along with their coach, were excited about the victory."',
+    opts:['team...were','along with','their coach','excited'], c:0,
+    e:'"Team" is singular → should be "was excited".' },
+  { d:3, domain:'Information & Ideas', p:'Data show that after the policy was implemented, unemployment fell from 8% to 5%.',
+    q:'Which choice best supports the claim that the policy was effective?',
+    opts:['Unemployment fell by 3 percentage points after the policy.','The policy was widely debated in the media.','Other countries have similar policies.','The policy was expensive to implement.'], c:0,
+    e:'Direct statistical evidence of change supports effectiveness.' },
+  { d:3, domain:'Expression of Ideas', p:'The theory was once widely accepted. _____, new evidence refuted it in the 1990s.',
+    q:'Which choice completes the text with the most logical transition?',
+    opts:['However','Therefore','Moreover','For instance'], c:0,
+    e:'Contrast between acceptance and refutation → "However".' },
+  { d:3, domain:'Craft & Structure', p:'',
+    q:'The author\'s tone in the phrase "the so-called expert blundered again" is best described as:',
+    opts:['sarcastic','admiring','neutral','joyful'], c:0,
+    e:'"So-called" signals sarcasm, belittling the expert.' }
+];
+
+function generateEnglish(){
+  var q = pick(englishBank);
+  var indices = [0,1,2,3];
+  var shuffled = shuffle(indices);
+  var newOpts = shuffled.map(function(i){ return q.opts[i]; });
+  var newC = shuffled.indexOf(q.c);
+  return { d:q.d, domain:q.domain, q:q.q, p:q.p, opts:newOpts, c:newC, e:q.e };
+}
+
+function generateQuestion(subject){
+  if(subject === 'math') return generateMath();
+  return generateEnglish();
+}
+
+function filterByDifficulty(subject){
+  var q;
+  var tries = 0;
+  do{
+    q = generateQuestion(subject);
+    tries++;
+    if(tries > 50) break;
+  } while(!matchesDifficulty(q.d));
+  return q;
+}
+function matchesDifficulty(d){
+  if(settings.diff === 'all') return true;
+  if(settings.diff === 'easy') return d === 1;
+  if(settings.diff === 'medium') return d === 2;
+  if(settings.diff === 'hard') return d === 3;
+  return true;
+}
+
+/* ============================================================
+   MODULE STATE FACTORY
+============================================================ */
+function makeState(subject, countOverride){
+  var count = countOverride || settings.count;
+  var qs = [];
+  for(var i=0;i<count;i++) qs.push(filterByDifficulty(subject));
+  if(settings.diff === 'mixed'){
+    qs.sort(function(a,b){ return a.d - b.d; });
+  }
+  return {
+    subject: subject,
+    questions: qs,
+    answers: new Array(count).fill(null),
+    checked: new Array(count).fill(false),
+    flagged: new Array(count).fill(false),
+    current: 0,
+    timerSec: subject === 'math' ? 35*60 : 32*60,
+    timerOn: false,
+    timerIv: null
+  };
+}
+
+/* ============================================================
+   RENDER PRACTICE MODULE
+============================================================ */
+function renderPractice(state, prefix){
+  var q = state.questions[state.current];
+  $(prefix+'Tag').textContent = q.domain;
+  $(prefix+'Domain').textContent = q.domain;
+  $(prefix+'Q').textContent = q.q;
+
+  var passageEl = $(prefix+'Passage');
+  if(q.p){ passageEl.textContent = q.p; passageEl.style.display = 'block'; }
+  else passageEl.style.display = 'none';
+
+  var dClass = q.d === 1 ? 'green' : q.d === 2 ? 'orange' : 'red';
+  var dLabel = q.d === 1 ? 'Easy' : q.d === 2 ? 'Medium' : 'Hard';
+  $(prefix+'Diff').className = 'diff ' + dClass;
+  $(prefix+'Diff').innerHTML = '<i class="fas fa-circle" style="font-size:.5rem"></i> ' + dLabel;
+
+  // Options
+  var optsEl = $(prefix+'Opts');
+  optsEl.innerHTML = '';
+  var letters = ['A','B','C','D'];
+  for(var i=0;i<q.opts.length && i<4;i++){
+    (function(idx){
+      var d = el('div','opt');
+      if(state.answers[state.current] === idx) d.classList.add('selected');
+      if(state.checked[state.current]){
+        if(idx === q.c) d.classList.add('correct');
+        else if(state.answers[state.current] === idx) d.classList.add('wrong');
+      }
+      d.innerHTML = '<span class="letter">'+letters[idx]+'</span><span>'+q.opts[idx]+'</span>';
+      d.addEventListener('click', function(){
+        if(state.checked[state.current]) return;
+        state.answers[state.current] = idx;
+        renderPractice(state, prefix);
+        $(prefix+'Fb').style.display = 'none';
+        $(prefix+'Check').disabled = false;
+      });
+      optsEl.appendChild(d);
+    })(i);
+  }
+
+  // Feedback
+  if(state.checked[state.current] && settings.instant){
+    var fb = $(prefix+'Fb');
+    fb.style.display = 'flex';
+    var ok = state.answers[state.current] === q.c;
+    fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    $(prefix+'FbText').innerHTML = '<strong>'+(ok?'✅ Correct!':'❌ Incorrect.')+'</strong> '+q.e;
+  } else {
+    $(prefix+'Fb').style.display = 'none';
+  }
+
+  // Progress
+  var answered = state.answers.filter(function(a){return a!==null;}).length;
+  $(prefix+'Prog').style.width = (answered/state.questions.length*100)+'%';
+  $(prefix+'Chip').textContent = (state.current+1)+' / '+state.questions.length;
+  $(prefix+'Timer').innerHTML = '<i class="fas fa-clock"></i> '+fmtTime(state.timerSec);
+  if(state.timerSec < 300) $(prefix+'Timer').classList.add('warn'); else $(prefix+'Timer').classList.remove('warn');
+
+  // Buttons
+  $(prefix+'Prev').disabled = state.current === 0;
+  $(prefix+'Next').disabled = state.current === state.questions.length - 1;
+  $(prefix+'Check').disabled = state.checked[state.current] || state.answers[state.current] === null;
+  $(prefix+'Flag').innerHTML = state.flagged[state.current]
+    ? '<i class="fas fa-star flag-on"></i> Flagged'
+    : '<i class="fas fa-star"></i> Flag';
+
+  renderGrid(state, prefix);
+  $(prefix+'Timer').style.display = settings.showTimer ? '' : 'none';
+  $(prefix+'TimerToggle').style.display = settings.showTimer ? '' : 'none';
+  $(prefix+'TimerReset').style.display = settings.showTimer ? '' : 'none';
+}
+
+function renderGrid(state, prefix){
+  var grid = $(prefix+'Grid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  for(var i=0;i<state.questions.length;i++){
+    (function(idx){
+      var cell = el('button','q-cell', String(idx+1));
+      if(idx === state.current) cell.classList.add('current');
+      if(state.answers[idx] !== null) cell.classList.add('answered');
+      if(state.checked[idx]){
+        if(state.answers[idx] === state.questions[idx].c) cell.classList.add('correct');
+        else cell.classList.add('wrong');
+      }
+      if(state.flagged[idx]) cell.classList.add('flagged');
+      cell.addEventListener('click', function(){
+        state.current = idx;
+        renderPractice(state, prefix);
+      });
+      grid.appendChild(cell);
+    })(i);
+  }
+}
+
+/* ============================================================
+   TIMER MANAGEMENT
+============================================================ */
+function startTimer(state, prefix){
+  if(state.timerIv) return;
+  state.timerOn = true;
+  state.timerIv = setInterval(function(){
+    if(state.timerSec > 0) state.timerSec--;
+    $(prefix+'Timer').innerHTML = '<i class="fas fa-clock"></i> '+fmtTime(state.timerSec);
+    if(state.timerSec < 300) $(prefix+'Timer').classList.add('warn');
+    if(state.timerSec === 0){
+      clearInterval(state.timerIv); state.timerIv = null; state.timerOn = false;
+      toast('⏰ Time up for this module!', 'warn');
+    }
+  }, 1000);
+  $(prefix+'TimerToggle').innerHTML = '<i class="fas fa-pause"></i>';
+}
+function pauseTimer(state, prefix){
+  clearInterval(state.timerIv); state.timerIv = null; state.timerOn = false;
+  $(prefix+'TimerToggle').innerHTML = '<i class="fas fa-play"></i>';
+}
+function resetTimer(state, prefix){
+  pauseTimer(state, prefix);
+  state.timerSec = state.subject === 'math' ? 35*60 : 32*60;
+  $(prefix+'Timer').innerHTML = '<i class="fas fa-clock"></i> '+fmtTime(state.timerSec);
+  $(prefix+'Timer').classList.remove('warn');
+}
+
+/* ============================================================
+   MODULE CONTROLLERS
+============================================================ */
+var mathState = null;
+var engState = null;
+
+function initMath(){
+  mathState = makeState('math');
+  renderPractice(mathState, 'math');
+  wirePractice(mathState, 'math');
+}
+function initEnglish(){
+  engState = makeState('english');
+  renderPractice(engState, 'english');
+  wirePractice(engState, 'english');
+}
+
+function wirePractice(state, prefix){
+  $(prefix+'Prev').onclick = function(){
+    if(state.current>0){ state.current--; renderPractice(state,prefix); }
+  };
+  $(prefix+'Next').onclick = function(){
+    if(state.current<state.questions.length-1){ state.current++; renderPractice(state,prefix); }
+  };
+  $(prefix+'Check').onclick = function(){
+    if(state.checked[state.current]) return;
+    if(state.answers[state.current] === null) return;
+    state.checked[state.current] = true;
+    var ok = state.answers[state.current] === state.questions[state.current].c;
+    recordAnswer(ok);
+    renderPractice(state, prefix);
+    if(settings.auto && ok && state.current < state.questions.length-1){
+      setTimeout(function(){ state.current++; renderPractice(state,prefix); }, 700);
+    }
+  };
+  $(prefix+'Flag').onclick = function(){
+    state.flagged[state.current] = !state.flagged[state.current];
+    renderPractice(state, prefix);
+  };
+  $(prefix+'Skip').onclick = function(){
+    if(state.current < state.questions.length-1){ state.current++; renderPractice(state,prefix); }
+    else toast('This is the last question.', 'warn');
+  };
+  $(prefix+'ReviewBtn').onclick = function(){
+    var panel = $(prefix+'Review');
+    panel.classList.toggle('open');
+  };
+  $(prefix+'TimerToggle').onclick = function(){
+    if(state.timerOn) pauseTimer(state, prefix);
+    else startTimer(state, prefix);
+  };
+  $(prefix+'TimerReset').onclick = function(){
+    resetTimer(state, prefix);
+  };
+}
+
+/* ============================================================
+   FLASHCARDS
+============================================================ */
+var flashData = [
+  { t:'Slope formula', d:'m = (y₂ − y₁) / (x₂ − x₁)' },
+  { t:'Quadratic formula', d:'x = [−b ± √(b² − 4ac)] / 2a' },
+  { t:'Pythagorean theorem', d:'a² + b² = c² (right triangles)' },
+  { t:'Percent change', d:'(new − old) / old × 100' },
+  { t:'Circle equation', d:'(x − h)² + (y − k)² = r²' },
+  { t:'Words in Context', d:'Use surrounding clues to choose the most precise word.' },
+  { t:'Comma splice', d:'Two independent clauses joined only by a comma — an error.' },
+  { t:'Transition: However', d:'Shows contrast between ideas.' },
+  { t:'Transition: Therefore', d:'Shows a result or conclusion.' },
+  { t:'Subject-verb agreement', d:'Singular subject → singular verb.' },
+  { t:'Mean vs Median', d:'Mean = average; Median = middle value.' },
+  { t:'Standard deviation', d:'Measure of spread around the mean.' },
+  { t:'Simple interest', d:'I = P × R × T (principal, rate, time)' },
+  { t:'Distance = ?', d:'Distance = speed × time' },
+  { t:'30-60-90 triangle', d:'Sides: x, x√3, 2x' },
+  { t:'45-45-90 triangle', d:'Sides: x, x, x√2' }
+];
+function initFlash(){
+  var grid = $('flashGrid');
+  grid.innerHTML = '';
+  flashData.forEach(function(c){
+    var f = el('div','flash');
+    f.innerHTML = '<div class="t">'+c.t+'</div><div class="d">'+c.d+'</div>';
+    f.addEventListener('click', function(){ f.classList.toggle('flipped'); });
+    grid.appendChild(f);
+  });
+}
+
+/* ============================================================
+   AI CHATBOT (rule-based)
+============================================================ */
+var chatHistory = [];
+function addMsg(role, html){
+  var body = $('chatBody');
+  var m = el('div','msg '+role, html);
+  body.appendChild(m);
+  body.scrollTop = body.scrollHeight;
+  chatHistory.push({role:role, html:html});
+}
+function botReply(input){
+  var s = input.toLowerCase();
+  var r = '';
+
+  // Greetings
+  if(/^(hi|hello|hey|yo|sup)/.test(s)){
+    r = 'Hey! I\'m your <strong>SAT Study Buddy</strong>. Ask me about strategy, formulas, timing, or any question you\'re stuck on. Try the quick chips below.';
+  }
+  // Math score
+  else if(s.includes('math') && (s.includes('improve') || s.includes('score') || s.includes('better'))){
+    r = 'For <strong>Math</strong>:<ul><li>Master linear equations, systems, and quadratics — they appear most.</li><li>Practice mental math: percentages, fractions, unit conversions.</li><li>Use Desmos for graphing questions — it\'s allowed on the real SAT.</li><li>Time yourself: aim for ~90 sec per question.</li><li>Review every wrong answer and write down the concept you missed.</li></ul>';
+  }
+  // Reading strategy
+  else if(s.includes('reading') || s.includes('english')){
+    r = 'For <strong>Reading & Writing</strong>:<ul><li>Read the question first, then the passage — saves time.</li><li>For "words in context," cover the options and predict your own word.</li><li>For grammar, check subject-verb agreement and punctuation first.</li><li>Wrong answers are often too extreme ("always," "never").</li></ul>';
+  }
+  // Quadratic
+  else if(s.includes('quadratic')){
+    r = '<strong>Quadratic formula:</strong><br><code>x = [−b ± √(b² − 4ac)] / 2a</code><br><br>Example: 2x² + 3x − 5 = 0 → a=2, b=3, c=−5 → x = [−3 ± √(9+40)]/4 = [−3 ± 7]/4 → <strong>x = 1 or x = −2.5</strong>.';
+  }
+  // Slope
+  else if(s.includes('slope')){
+    r = '<strong>Slope formula:</strong><br><code>m = (y₂ − y₁) / (x₂ − x₁)</code><br><br>Example: through (2,3) and (6,11) → m = (11−3)/(6−2) = 8/4 = <strong>2</strong>.';
+  }
+  // Timing
+  else if(s.includes('timing') || s.includes('how long') || s.includes('time')){
+    r = '<strong>SAT module timing:</strong><ul><li>Reading & Writing: 2 modules × 32 min (27 questions each)</li><li>Math: 2 modules × 35 min (22 questions each)</li><li>Total: about 2 hours 14 min</li></ul>Pace: ~70 sec per R&W question, ~95 sec per Math question.';
+  }
+  // Comma splice
+  else if(s.includes('comma splice')){
+    r = 'A <strong>comma splice</strong> joins two independent clauses with only a comma. Wrong: "I ran, he walked."<br>Fix it with:<ul><li>A period: "I ran. He walked."</li><li>A semicolon: "I ran; he walked."</li><li>A conjunction: "I ran, and he walked."</li></ul>';
+  }
+  // Exam tips
+  else if(s.includes('exam') && s.includes('tip')){
+    r = '<strong>Exam-day tips:</strong><ul><li>Sleep 8 hours — memory consolidates during sleep.</li><li>Eat a light protein breakfast.</li><li>Bring your ID, admission ticket, calculator, and pencils.</li><li>Flag hard questions and return to them — don\'t get stuck.</li><li>If you must guess, eliminate 2 wrong answers first.</li><li>Breathe. One question at a time.</li></ul>';
+  }
+  // Score
+  else if(s.includes('score') || s.includes('1600') || s.includes('800')){
+    r = 'The SAT is scored <strong>400–1600</strong>:<ul><li>Reading & Writing: 200–800</li><li>Math: 200–800</li><li>Each section is scored on a curve based on question difficulty.</li></ul>Aim for your target school\'s 75th percentile. Harvard: ~1550. State universities: ~1200–1350.';
+  }
+  // Pythagorean
+  else if(s.includes('pythag') || s.includes('triangle') && s.includes('right')){
+    r = '<strong>Pythagorean theorem:</strong> <code>a² + b² = c²</code>, where c is the hypotenuse. Common triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25.';
+  }
+  // Percent
+  else if(s.includes('percent')){
+    r = '<strong>Percent change formula:</strong> <code>(new − old) / old × 100</code>.<br>Example: $80 → $100 → (100−80)/80 × 100 = <strong>25%</strong>.<br>Tip: "percent of" means multiply: 20% of 50 = 0.20 × 50 = 10.';
+  }
+  // Practice
+  else if(s.includes('practice') || s.includes('study') || s.includes('prepare')){
+    r = 'A <strong>daily study plan</strong>:<ul><li>30 min: Math practice (mixed difficulty)</li><li>30 min: Reading & Writing practice</li><li>15 min: Review wrong answers — write down the concept</li><li>15 min: Flashcards (formulas, vocab)</li></ul>Consistency beats cramming. 4 weeks of daily 90-min sessions ≈ +150 points.';
+  }
+  // Desmos
+  else if(s.includes('desmos') || s.includes('calculator')){
+    r = '<strong>Desmos tips for SAT:</strong><ul><li>Graph both sides of an equation to find intersections.</li><li>Use sliders to test values quickly.</li><li>For systems, plot both lines and read the intersection.</li><li>It\'s embedded in the Math section of this app.</li></ul>';
+  }
+  // Help
+  else if(s.includes('help') || s.includes('what can you')){
+    r = 'I can help with:<ul><li>SAT strategy (reading, math, timing)</li><li>Formulas (quadratic, slope, percent, area)</li><li>Grammar rules (comma splices, transitions)</li><li>Exam-day tips</li><li>Study plans</li></ul>Just ask!';
+  }
+  // Thanks
+  else if(s.includes('thank')){
+    r = 'You\'re welcome! Keep grinding — every practice session moves your score up. 💪';
+  }
+  // Fallback
+  else{
+    r = 'I\'m a rule-based buddy, so I may not have caught that. Try asking about:<ul><li>"How do I improve my math score?"</li><li>"Explain the quadratic formula"</li><li>"Timing for each module"</li><li>"What is a comma splice?"</li><li>"Exam day tips"</li></ul>';
+  }
+
+  setTimeout(function(){ addMsg('bot', r); }, 350);
+}
+function sendChat(){
+  var inp = $('chatInput');
+  var val = inp.value.trim();
+  if(!val) return;
+  addMsg('user', val);
+  inp.value = '';
+  botReply(val);
+}
+function initChat(){
+  addMsg('bot', 'Hi! I\'m your <strong>SAT Study Buddy</strong>. Ask me anything about strategy, formulas, timing, or a specific question you\'re stuck on. Tap a quick chip below to start.');
+  $('chatSend').addEventListener('click', sendChat);
+  $('chatInput').addEventListener('keydown', function(e){ if(e.key === 'Enter') sendChat(); });
+  var chips = $('chatChips').querySelectorAll('.qc');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var q = c.dataset.q;
+      addMsg('user', q);
+      botReply(q);
+    });
+  });
+}
+
+/* ============================================================
+   EXAM MODE
+============================================================ */
+var examModules = [
+  { name:'Module 1 · Reading & Writing', time: 32*60, subject:'english', count: 27, section:'rw' },
+  { name:'Module 2 · Reading & Writing', time: 32*60, subject:'english', count: 27, section:'rw' },
+  { name:'Module 3 · Math', time: 35*60, subject:'math', count: 22, section:'math' },
+  { name:'Module 4 · Math', time: 35*60, subject:'math', count: 22, section:'math' }
+];
+var examState = null;
+var examTimerIv = null;
+
+function buildExam(){
+  var modules = examModules.map(function(m){
+    var qs = [];
+    for(var i=0;i<m.count;i++) qs.push(generateQuestion(m.subject));
+    return {
+      name: m.name, time: m.time, section: m.section,
+      questions: qs,
+      answers: new Array(m.count).fill(null),
+      checked: new Array(m.count).fill(false),
+      flagged: new Array(m.count).fill(false)
+    };
+  });
+  return { modules: modules, currentMod: 0, currentIdx: 0, timerSec: modules[0].time, score: { rw: 0, math: 0 }, active: false };
+}
+
+function startExam(){
+  examState = buildExam();
+  examState.active = true;
+  $('examSetup').style.display = 'none';
+  $('examResults').style.display = 'none';
+  $('examActive').style.display = 'block';
+  examState.timerSec = examState.modules[0].time;
+  renderExam();
+  startExamTimer();
+}
+
+function startExamTimer(){
+  clearInterval(examTimerIv);
+  examTimerIv = setInterval(function(){
+    examState.timerSec--;
+    var chip = $('examTimer');
+    chip.innerHTML = '<i class="fas fa-clock"></i> '+fmtTime(examState.timerSec);
+    if(examState.timerSec < 300) chip.classList.add('warn'); else chip.classList.remove('warn');
+    if(examState.timerSec <= 0){
+      clearInterval(examTimerIv);
+      toast('⏰ Module time up!', 'warn');
+      nextExamModule();
+    }
+  }, 1000);
+}
+
+function renderExam(){
+  var m = examState.modules[examState.currentMod];
+  var idx = examState.currentIdx;
+  var q = m.questions[idx];
+
+  $('examMod').textContent = m.name;
+  $('examTag').textContent = q.domain;
+  $('examQ').textContent = q.q;
+  var pe = $('examPassage');
+  if(q.p){ pe.textContent = q.p; pe.style.display = 'block'; } else pe.style.display = 'none';
+
+  var dClass = q.d === 1 ? 'green' : q.d === 2 ? 'orange' : 'red';
+  var dLabel = q.d === 1 ? 'Easy' : q.d === 2 ? 'Medium' : 'Hard';
+  $('examDiff').className = 'diff ' + dClass;
+  $('examDiff').innerHTML = '<i class="fas fa-circle" style="font-size:.5rem"></i> ' + dLabel;
+
+  var optsEl = $('examOpts');
+  optsEl.innerHTML = '';
+  var letters = ['A','B','C','D'];
+  q.opts.forEach(function(opt, i){
+    var d = el('div','opt');
+    if(m.answers[idx] === i) d.classList.add('selected');
+    if(m.checked[idx]){
+      if(i === q.c) d.classList.add('correct');
+      else if(m.answers[idx] === i) d.classList.add('wrong');
+    }
+    d.innerHTML = '<span class="letter">'+letters[i]+'</span><span>'+opt+'</span>';
+    d.addEventListener('click', function(){
+      if(m.checked[idx]) return;
+      m.answers[idx] = i;
+      renderExam();
+    });
+    optsEl.appendChild(d);
+  });
+
+  if(m.checked[idx]){
+    $('examFb').style.display = 'flex';
+    var ok = m.answers[idx] === q.c;
+    $('examFb').className = 'fb ' + (ok ? 'ok' : 'no');
+    $('examFbText').innerHTML = '<strong>'+(ok?'✅ Correct!':'❌ Incorrect.')+'</strong> '+q.e;
+  } else {
+    $('examFb').style.display = 'none';
+  }
+
+  var answered = m.answers.filter(function(a){return a!==null;}).length;
+  $('examProg').style.width = (answered/m.questions.length*100)+'%';
+  $('examChip').textContent = (idx+1)+' / '+m.questions.length;
+  $('examTimer').innerHTML = '<i class="fas fa-clock"></i> '+fmtTime(examState.timerSec);
+
+  $('examPrev').disabled = idx === 0;
+  $('examNext').disabled = idx === m.questions.length - 1;
+  $('examCheck').disabled = m.checked[idx] || m.answers[idx] === null;
+  $('examFlag').innerHTML = m.flagged[idx]
+    ? '<i class="fas fa-star flag-on"></i> Flagged'
+    : '<i class="fas fa-star"></i> Flag';
+
+  renderExamGrid();
+}
+
+function renderExamGrid(){
+  var m = examState.modules[examState.currentMod];
+  var grid = $('examGrid');
+  grid.innerHTML = '';
+  for(var i=0;i<m.questions.length;i++){
+    (function(idx){
+      var c = el('button','q-cell', String(idx+1));
+      if(idx === examState.currentIdx) c.classList.add('current');
+      if(m.answers[idx] !== null) c.classList.add('answered');
+      if(m.checked[idx]){
+        if(m.answers[idx] === m.questions[idx].c) c.classList.add('correct');
+        else c.classList.add('wrong');
+      }
+      if(m.flagged[idx]) c.classList.add('flagged');
+      c.addEventListener('click', function(){
+        examState.currentIdx = idx;
+        renderExam();
+      });
+      grid.appendChild(c);
+    })(i);
+  }
+}
+
+function scoreExamModule(mod){
+  var m = examState.modules[mod];
+  for(var i=0;i<m.questions.length;i++){
+    if(m.checked[i] && m.answers[i] === m.questions[i].c){
+      examState.score[m.section]++;
+    }
+  }
+}
+
+function nextExamModule(){
+  scoreExamModule(examState.currentMod);
+  if(examState.currentMod < 3){
+    examState.currentMod++;
+    examState.currentIdx = 0;
+    examState.timerSec = examState.modules[examState.currentMod].time;
+    renderExam();
+    startExamTimer();
+    toast('Starting ' + examState.modules[examState.currentMod].name, 'ok');
+  } else {
+    endExam();
+  }
+}
+
+function endExam(){
+  clearInterval(examTimerIv);
+  examState.active = false;
+  // score current if not already
+  scoreExamModule(examState.currentMod);
+  $('examActive').style.display = 'none';
+  $('examResults').style.display = 'block';
+
+  var totalRW = examState.modules[0].questions.length + examState.modules[1].questions.length;
+  var totalMath = examState.modules[2].questions.length + examState.modules[3].questions.length;
+  var rwPct = examState.score.rw / totalRW;
+  var mPct = examState.score.math / totalMath;
+  var rwScaled = Math.round(200 + rwPct * 600);
+  var mScaled = Math.round(200 + mPct * 600);
+  $('finalScore').textContent = rwScaled + mScaled;
+  $('rwScore').textContent = rwScaled;
+  $('mathScore').textContent = mScaled;
+  $('finalScore').animate([{opacity:0, transform:'scale(.7)'},{opacity:1,transform:'scale(1)'}], {duration:600, easing:'ease-out'});
+}
+
+function wireExam(){
+  $('examStart').onclick = startExam;
+  $('examRetake').onclick = function(){
+    $('examResults').style.display = 'none';
+    $('examSetup').style.display = 'block';
+  };
+  $('examPrev').onclick = function(){
+    if(examState.currentIdx > 0){ examState.currentIdx--; renderExam(); }
+  };
+  $('examNext').onclick = function(){
+    var m = examState.modules[examState.currentMod];
+    if(examState.currentIdx < m.questions.length - 1){ examState.currentIdx++; renderExam(); }
+    else if(examState.currentMod < 3){ nextExamModule(); }
+  };
+  $('examCheck').onclick = function(){
+    var m = examState.modules[examState.currentMod];
+    if(m.checked[examState.currentIdx]) return;
+    if(m.answers[examState.currentIdx] === null) return;
+    m.checked[examState.currentIdx] = true;
+    renderExam();
+  };
+  $('examFlag').onclick = function(){
+    var m = examState.modules[examState.currentMod];
+    m.flagged[examState.currentIdx] = !m.flagged[examState.currentIdx];
+    renderExam();
+  };
+  $('examSkip').onclick = function(){
+    var m = examState.modules[examState.currentMod];
+    if(examState.currentIdx < m.questions.length - 1){ examState.currentIdx++; renderExam(); }
+  };
+  $('examReviewBtn').onclick = function(){
+    $('examReviewPanel').classList.toggle('open');
+  };
+  $('examEnd').onclick = function(){
+    if(confirm('End the exam now? Your score will be based on answered questions.')){
+      endExam();
+    }
+  };
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+var navBtns = document.querySelectorAll('.nav-btn');
+var pages = document.querySelectorAll('.page');
+var cardLinks = document.querySelectorAll('.card-link');
+
+function showPage(id){
+  pages.forEach(function(p){ p.classList.remove('active'); });
+  var t = $('page-'+id);
+  if(t) t.classList.add('active');
+  navBtns.forEach(function(b){ b.classList.toggle('active', b.dataset.page === id); });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+navBtns.forEach(function(b){ b.addEventListener('click', function(){ showPage(b.dataset.page); }); });
+cardLinks.forEach(function(c){ c.addEventListener('click', function(){ showPage(c.dataset.page); }); });
+
+/* ============================================================
+   SETTINGS PANEL
+============================================================ */
+$('openSettings').onclick = function(){ $('settingsPanel').classList.add('open'); $('overlay').classList.add('on'); };
+$('closeSettings').onclick = function(){ $('settingsPanel').classList.remove('open'); $('overlay').classList.remove('on'); };
+$('overlay').onclick = function(){ $('settingsPanel').classList.remove('open'); $('overlay').classList.remove('on'); };
+
+$('setDark').onclick = function(){ settings.dark = !settings.dark; applySettings(); saveSettings(); };
+$('setFont').oninput = function(e){ settings.fontSize = parseInt(e.target.value); applySettings(); saveSettings(); };
+$('setCount').onchange = function(e){ settings.count = parseInt(e.target.value); saveSettings(); toast('New session size will apply on next reload', 'ok'); };
+$('setDiff').onchange = function(e){ settings.diff = e.target.value; saveSettings(); toast('Difficulty filter updated', 'ok'); };
+$('setTimer').onclick = function(){ settings.showTimer = !settings.showTimer; applySettings(); saveSettings(); };
+$('setInstant').onclick = function(){ settings.instant = !settings.instant; applySettings(); saveSettings(); };
+$('setAuto').onclick = function(){ settings.auto = !settings.auto; applySettings(); saveSettings(); };
+$('setStrict').onclick = function(){ settings.strict = !settings.strict; applySettings(); saveSettings(); };
+$('setReview').onclick = function(){ settings.review = !settings.review; applySettings(); saveSettings(); };
+$('resetStats').onclick = function(){
+  if(confirm('Reset all statistics? This cannot be undone.')){
+    stats = { correct:0, attempted:0, streak:0, lastDay:null };
+    saveStats();
+    refreshStats();
+    toast('Statistics reset', 'ok');
+  }
+};
+
+// Open chat from icon button
+$('openChat').onclick = function(){ showPage('chat'); };
+
+/* ============================================================
+   KEYBOARD SHORTCUTS
+============================================================ */
+document.addEventListener('keydown', function(e){
+  if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if(e.key === 'ArrowRight'){
+    var active = document.querySelector('.page.active');
+    if(active && active.id === 'page-math' && mathState){ if(mathState.current < mathState.questions.length-1){ mathState.current++; renderPractice(mathState,'math'); } }
+    if(active && active.id === 'page-english' && engState){ if(engState.current < engState.questions.length-1){ engState.current++; renderPractice(engState,'english'); } }
+  }
+  if(e.key === 'ArrowLeft'){
+    var active = document.querySelector('.page.active');
+    if(active && active.id === 'page-math' && mathState){ if(mathState.current > 0){ mathState.current--; renderPractice(mathState,'math'); } }
+    if(active && active.id === 'page-english' && engState){ if(engState.current > 0){ engState.current--; renderPractice(engState,'english'); } }
+  }
+});
+
+/* ============================================================
+   INIT
+============================================================ */
+applySettings();
+refreshStats();
+initMath();
+initEnglish();
+initFlash();
+initChat();
+wireExam();
+
+showPage('home');
+
+})();
+</script>
+</body>
+</html>
+```
+
